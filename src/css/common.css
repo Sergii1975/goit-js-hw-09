@@ -16,3 +16,18 @@ img {
   display: block;
   max-width: 100%;
 }
+
+
+.button-box {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  padding-top: 300px;
+}
+
+button {
+  display: block;
+  width: 100px;
+  height: 50px;
+}
