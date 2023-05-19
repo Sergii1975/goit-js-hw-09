@@ -4,8 +4,8 @@ import Notiflix from 'notiflix';
 
 
 let getRef = selector => document.querySelector(selector);
-const imputDatePickerRef = getRef('#datetime-picker');
-const btnStartRef = getRef('[data-start]');
+const inputDatePickerEl = getRef('#datetime-picker');
+const btnStartEl = getRef('[data-start]');
 const days = getRef('[data-days]');
 const hours = getRef('[data-hours]');
 const minutes = getRef('[data-minutes]');
@@ -27,17 +27,17 @@ const options = {
   },
 };
 
-btnStartRef.setAttribute('disabled', true);
-flatpickr(imputDatePickerRef, options);
+btnStartEl.setAttribute('disabled', true);
+flatpickr(inputDatePickerEl, options);
 
-btnStartRef.addEventListener('click', onBtnStart);
+btnStartEl.addEventListener('click', onBtnStart);
 // Reset timer on btn
 window.addEventListener('keydown', event => {
   if (event.code === 'Escape' && timerId) {
     clearInterval(timerId);
 
-    imputDatePickerRef.removeAttribute('disabled');
-    btnStartRef.setAttribute('disabled', true);
+    inputDatePickerEl.removeAttribute('disabled');
+    btnStartEl.setAttribute('disabled', true);
 
     seconds.textContent = '00';
     minutes.textContent = '00';
@@ -56,7 +56,7 @@ function currentDifferenceDate(selectedDates) {
   const currentDate = Date.now();
 
   if (selectedDates < currentDate) {
-    btnStartRef.setAttribute('disabled', true);
+    btnStartEl.setAttribute('disabled', true);
     return Notiflix.Notify.failure("Please choose a date in the future");
   }
 
@@ -64,13 +64,13 @@ function currentDifferenceDate(selectedDates) {
   formatDate = convertMs(ms);
 
   renderDate(formatDate);
-  btnStartRef.removeAttribute('disabled');
+  btnStartEl.removeAttribute('disabled');
 }
 
 //Timer
 function startTimer() {
-  btnStartRef.setAttribute('disabled', true);
-  imputDatePickerRef.setAttribute('disabled', true);
+  btnStartEl.setAttribute('disabled', true);
+  inputDatePickerEl.setAttribute('disabled', true);
 
   ms -= 1000;
 
