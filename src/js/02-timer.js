@@ -24,10 +24,11 @@ const options = {
   onClose(selectedDates) {
     console.log(selectedDates[0]);
     currentDifferenceDate(selectedDates[0]);
-  },
+  }
 };
 
 btnStartEl.setAttribute('disabled', true);
+
 flatpickr(inputDatePickerEl, options);
 
 btnStartEl.addEventListener('click', onBtnStart);
