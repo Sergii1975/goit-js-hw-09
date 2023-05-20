@@ -3,15 +3,13 @@ import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from 'notiflix';
 
 
-let getRef = selector => document.querySelector(selector);
-const inputDatePickerEl = getRef('#datetime-picker');
-const btnStartEl = getRef('[data-start]');
-const days = getRef('[data-days]');
-const hours = getRef('[data-hours]');
-const minutes = getRef('[data-minutes]');
-const seconds = getRef('[data-seconds]');
+const inputDatePickerEl = document.querySelector('#datetime-picker');
+const btnStartEl = document.querySelector('[data-start]');
+const days = document.querySelector('[data-days]');
+const hours = document.querySelector('[data-hours]');
+const minutes = document.querySelector('[data-minutes]');
+const seconds= document.querySelector('[data-seconds]');
 
-// Set initial value
 let ms = 0;
 let timerId = null;
 let formatDate = null;
@@ -32,7 +30,7 @@ btnStartEl.setAttribute('disabled', true);
 flatpickr(inputDatePickerEl, options);
 
 btnStartEl.addEventListener('click', onBtnStart);
-// Reset timer on btn
+
 window.addEventListener('keydown', event => {
   if (event.code === 'Escape' && timerId) {
     clearInterval(timerId);
@@ -47,12 +45,10 @@ window.addEventListener('keydown', event => {
   }
 });
 
-// Start timer
 function onBtnStart() {
   timerId = setInterval(startTimer, 1000);
 }
 
-//date checking and rendering of date difference
 function currentDifferenceDate(selectedDates) {
   const currentDate = Date.now();
 
@@ -68,7 +64,6 @@ function currentDifferenceDate(selectedDates) {
   btnStartEl.removeAttribute('disabled');
 }
 
-//Timer
 function startTimer() {
   btnStartEl.setAttribute('disabled', true);
   inputDatePickerEl.setAttribute('disabled', true);
@@ -84,7 +79,6 @@ function startTimer() {
   }
 }
 
-// Rendering date
 function renderDate(formatDate) {
   seconds.textContent = formatDate.seconds;
   minutes.textContent = formatDate.minutes;
