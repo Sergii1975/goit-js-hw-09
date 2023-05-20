@@ -76,7 +76,7 @@ function startTimer() {
   ms -= 1000;
 
   if (seconds.textContent <= 0 && minutes.textContent <= 0 && hours.textContent <= 0 && days.textContent <= 0) {
-    return Notiflix.Notify.info('Time end');
+   Notiflix.Notify.info('Time end');
     clearInterval(timerId);
   } else {
     formatDate = convertMs(ms);
