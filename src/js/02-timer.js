@@ -31,19 +31,6 @@ flatpickr(inputDatePickerEl, options);
 
 btnStartEl.addEventListener('click', onBtnStart);
 
-window.addEventListener('keydown', event => {
-  if (event.code === 'Escape' && timerId) {
-    clearInterval(timerId);
-
-    inputDatePickerEl.removeAttribute('disabled');
-    btnStartEl.setAttribute('disabled', true);
-
-    seconds.textContent = '00';
-    minutes.textContent = '00';
-    hours.textContent = '00';
-    days.textContent = '00';
-  }
-});
 
 function onBtnStart() {
   timerId = setInterval(startTimer, 1000);
@@ -72,6 +59,7 @@ function startTimer() {
 
   if (seconds.textContent <= 0 && minutes.textContent <= 0 && hours.textContent <= 0 && days.textContent <= 0) {
    Notiflix.Notify.info('Time end');
+    inputDatePickerEl.removeAttribute('disabled', true);
     clearInterval(timerId);
   } else {
     formatDate = convertMs(ms);
